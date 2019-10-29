@@ -1,24 +1,19 @@
 pipeline {
-  agent {
-    dockerfile {
-      filename 'Dockerfile'
-    }
-
-  }
+  agent any
   stages {
     stage('Build docker image') {
       steps {
-        sh 'docker image build -t ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG} .'
+        sh 'docker image build -t ${DOCKER_USER}/${DOCKER_IMAGE}:1.0.${BUILD_NUMBER} .'
       }
     }
     stage('Run docker image') {
       steps {
-        sh 'docker run -d -p 80:80 ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}'
+        sh 'docker run -d -p 80:80 ${DOCKER_USER}/${DOCKER_IMAGE}:1.0.${BUILD_NUMBER}'
       }
     }
     stage('Push docker image') {
       steps {
-        sh 'docker image push ${DOCKER_USER}/${DOCKER_IMAGE}:${DOCKER_TAG}'
+        sh 'docker image push ${DOCKER_USER}/${DOCKER_IMAGE}:1.0.${BUILD_NUMBER}'
       }
     }
   }
