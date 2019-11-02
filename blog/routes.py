@@ -13,7 +13,7 @@ posts = [
     },
     {
         "author": "Second Leszczynski",
-        "title": "Second post 1",
+        "title": "Second post 3",
         "content": "Second post content",
         "date_posted": "September 27, 2019",
     },

@@ -13,7 +13,9 @@ pipeline {
     }
     stage('Push docker image') {
       steps {
-        sh 'docker image push ${DOCKER_USER}/${DOCKER_IMAGE}:1.0.${BUILD_NUMBER}'
+        withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
+          sh 'docker image push ${DOCKER_USER}/${DOCKER_IMAGE}:1.0.${BUILD_NUMBER}'
+        }
       }
     }
   }
