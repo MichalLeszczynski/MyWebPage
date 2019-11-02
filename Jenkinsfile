@@ -7,6 +7,7 @@ pipeline {
         sh'docker container rm $(docker container ls |grep my-web-page| cut -d' ' -f1'
         sh 'docker image rm $(docker image ls | grep my-web-page | cut -d' ' -f1)'
       }
+    }
     stage('Build docker image') {
       steps {
         sh 'docker image build -t ${DOCKER_USER}/${DOCKER_IMAGE}:1.0.${BUILD_NUMBER} .'
